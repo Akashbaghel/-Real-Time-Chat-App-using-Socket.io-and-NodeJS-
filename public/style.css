@@ -57,15 +57,17 @@ textarea {
 }
 .incoming {
     background: #8F8BE8;
-    color: #fff;  
+    color: #fff; 
+    overflow-wrap: break-word;
 }
 .outgoing {
     background: #e9eafd;
     color: #787986;
     margin-left: auto;
+    overflow-wrap: break-word;
 }
 .message h4 {
-    position: absolute;
+    position: absolute; 
     top: -20px;
     left: 0;
     color: #333;
