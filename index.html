@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>chat app</title>
 	<link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -14,14 +15,13 @@
         <div class="brand">
             <img height="40" src="/letsChat.png" alt="">
             <h1>let's chat</h1>
+            <p class="online">users online: <span id="counter"></span></p>
         </div>
         <div class="message_area"></div>
         <div>
             <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
         </div>
     </section>
-
-    <script src="/socket.io/socket.io.js"></script>
-	<script src="/client.js"></script>
+    <script src="/client.js"></script>
 </body>
 </html>

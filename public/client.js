@@ -41,10 +41,22 @@ function appendMessage(msg, type) {
 }
 
 //Receive message
+
+socket.on('join', (data) => {
+	console.log(data.clients);
+	document.getElementById("counter").innerHTML = data.clients.toString();
+})
+
+socket.on('leave', (data) => {
+	console.log(data.clients);
+	document.getElementById("counter").innerHTML = data.clients.toString();
+})
+
 socket.on('message', (msg) => {
 	appendMessage(msg, 'incoming');
 	scrollToBottom();
 })
+
 
 function scrollToBottom() {
 	messageArea.scrollTop = messageArea.scrollHeight

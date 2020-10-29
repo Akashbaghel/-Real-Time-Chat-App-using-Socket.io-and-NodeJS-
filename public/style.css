@@ -31,6 +31,12 @@ section.chat_section {
     color: #444;
     margin-left: 10px;
 }
+.brand p {
+    color: green;
+    text-align: right;
+    position: relative;
+    margin-left: auto;
+}
 .message_area{
     height: 500px;
     padding: 16px;
@@ -59,6 +65,7 @@ textarea {
     background: #8F8BE8;
     color: #fff; 
     overflow-wrap: break-word;
+    margin-right: auto;
 }
 .outgoing {
     background: #e9eafd;

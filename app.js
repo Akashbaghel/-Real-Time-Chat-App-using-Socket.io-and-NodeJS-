@@ -11,16 +11,19 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
 
+var clients = 0;
 
-io.on('connection', function(socket) {
- 	console.log('New user connected');
+//Server side socket.io code
+io.on('connection', (socket) => {
+ 	clients++;
+ 	io.emit('join', {clients: clients});
 
  	socket.on('disconnect', () => {
-    	console.log('user disconnected');
+    	clients--;
+    	socket.broadcast.emit('leave', {clients: clients});
   	})
 
   	socket.on('message', (msg) => {
-		//console.log(msg);
 		socket.broadcast.emit('message', msg);
 	})
 });
