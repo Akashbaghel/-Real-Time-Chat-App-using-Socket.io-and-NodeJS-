@@ -1,6 +1,7 @@
 const socket = io();
 
 let name;
+let timeout = undefined;
 
 do {
 	name = prompt('Please enter your name')
@@ -14,6 +15,12 @@ textarea.addEventListener('keyup', (e) => {
 		sendMessage(e.target.value)
 	}
 
+})
+
+textarea.addEventListener('keypress', (e) => {
+	if(e.which!=13){
+        socket.emit('typing', {name:name, typing:true})
+    }
 })
 
 function sendMessage(message) {
@@ -40,6 +47,7 @@ function appendMessage(msg, type) {
     messageArea.appendChild(mainDiv)
 }
 
+
 //Receive message
 
 socket.on('join', (data) => {
@@ -52,6 +60,15 @@ socket.on('leave', (data) => {
 	document.getElementById("counter").innerHTML = data.clients.toString();
 })
 
+socket.on('typing', (data) => {
+	if(data.typing==true) {
+		document.getElementById("typing").innerHTML = `${data.name} is typing...`;
+		setTimeout(() => {
+			document.getElementById("typing").innerHTML = "";
+		}, 2000);
+	}
+})
+
 socket.on('message', (msg) => {
 	appendMessage(msg, 'incoming');
 	scrollToBottom();
@@ -59,5 +76,5 @@ socket.on('message', (msg) => {
 
 
 function scrollToBottom() {
-	messageArea.scrollTop = messageArea.scrollHeight
+	messageArea.scrollTop = messageArea.scrollHeight;
 }

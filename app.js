@@ -23,6 +23,10 @@ io.on('connection', (socket) => {
     	socket.broadcast.emit('leave', {clients: clients});
   	})
 
+   socket.on('typing', (data) => {
+       socket.broadcast.emit('typing', data)
+   })
+
   	socket.on('message', (msg) => {
 		socket.broadcast.emit('message', msg);
 	})
